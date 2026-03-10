@@ -1,5 +1,7 @@
 package com.movie.watchlist.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,5 +35,11 @@ public class Movie {
 	
 	@Column(nullable = false)
 	private String thumbnail;
+	
+	@Column(nullable = false)
+	private LocalDate releaseDate;
+	
+	@Column(nullable = false)
+	private Integer duration;
 }
 

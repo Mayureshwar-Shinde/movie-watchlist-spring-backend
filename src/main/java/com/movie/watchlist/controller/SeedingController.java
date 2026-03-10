@@ -18,6 +18,6 @@ public class SeedingController {
 	@GetMapping("/movie")
 	public String seedMovie() {
 		seedingService.seedMovie();
-		return "Movies seeded successfully";
+		return "Movies seeded successfully.";
 	}
 }

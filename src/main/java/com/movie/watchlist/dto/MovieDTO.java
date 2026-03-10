@@ -1,5 +1,7 @@
 package com.movie.watchlist.dto;
 
+import java.time.LocalDate;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,4 +14,6 @@ public class MovieDTO {
 	private Boolean watched;
 	private Float rating;
 	private String thumbnail;
+	private LocalDate releaseDate;
+	private Integer duration;
 }
