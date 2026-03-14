@@ -43,6 +43,8 @@ public class MovieService {
 	    movie.setWatched(movieDTO.getWatched());
 	    movie.setRating(movieDTO.getRating());
 	    movie.setThumbnail(movieDTO.getThumbnail());
+	    movie.setReleaseDate(movieDTO.getReleaseDate());
+	    movie.setDuration(movieDTO.getDuration());
 		return movieRepository.save(movie);
 	}
 	
