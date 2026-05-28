@@ -88,6 +88,12 @@
 		    <artifactId>flyway-database-postgresql</artifactId>
 		    <scope>runtime</scope>
 		</dependency>
+		<!-- SQID -->
+		<dependency>
+		    <groupId>org.sqids</groupId>
+		    <artifactId>sqids</artifactId>
+		    <version>0.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

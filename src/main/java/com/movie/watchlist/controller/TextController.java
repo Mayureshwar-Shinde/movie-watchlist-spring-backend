@@ -1,0 +1,44 @@
+package com.movie.watchlist.controller;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.movie.watchlist.dto.TextDTO;
+import com.movie.watchlist.responsestructure.ApiResponse;
+
+
+@RestController
+@RequestMapping("/text")
+public class TextController {
+	private final TextService textService;
+	
+	public TextController(TextService textService) {
+		this.textService = textService;
+	}
+	
+	@GetMapping
+	public ApiResponse<List<TextDTO>> findAllText() {
+		List<TextDTO> textDtoList = textService.findAllText();
+		return new ApiResponse<List<TextDTO>>(HttpStatus.OK.value(), textDtoList, "Texts fetched successfully.");
+	}
+	
+	@PostMapping
+	public ApiResponse<TextDTO> saveText(@RequestBody TextDTO textDTO) {
+		TextDTO savedTextDTO = textService.saveText(textDTO);
+		return new ApiResponse<TextDTO>(HttpStatus.CREATED.value(), savedTextDTO, "Text saved successfully.");    
+	}
+	
+	@GetMapping("/{hash}")
+	public ApiResponse<TextDTO> findText(@PathVariable Integer hash) {
+		TextDTO searchedTextDTO = textService.findText(hash);
+		return new ApiResponse<TextDTO>(HttpStatus.OK.value(), searchedTextDTO, "Text fetched successfully.");
+	}
+}
+
