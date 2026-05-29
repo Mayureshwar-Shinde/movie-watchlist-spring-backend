@@ -1,5 +1,6 @@
 package com.movie.watchlist.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,20 +35,21 @@ public class TextService {
 	
 	public TextDTO saveText(TextDTO textDTO) {
 		Text text = modelMapper.map(textDTO, Text.class);
-		text.setHash(0);
+		text.setHash("");
+		text.setExpireAt(LocalDateTime.now().plusDays(7));
 		Text savedText = textRepository.save(text);
 		
 		String sqid = sqids.encode(List.of(savedText.getTextId().longValue()));
-		savedText.setHash(Integer.valueOf(sqid));
+		savedText.setHash(sqid);
 		savedText = textRepository.save(savedText);
 		
 		textDTO = modelMapper.map(savedText, TextDTO.class);
 		return textDTO;
 	}
 	
-	public TextDTO findText(Integer id) {
-		Text text = textRepository.findByHash(id)
-				.orElseThrow(() -> new DoesNotExistException("Text with hash: " + id + " does not exist."));
+	public TextDTO findText(String hash) {
+		Text text = textRepository.findByHash(hash)
+				.orElseThrow(() -> new DoesNotExistException("Text with hash: " + hash + " does not exist."));
 		TextDTO textDTO = modelMapper.map(text, TextDTO.class);
 		return textDTO;
 	}

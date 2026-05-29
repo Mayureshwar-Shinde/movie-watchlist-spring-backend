@@ -36,7 +36,7 @@ public class TextController {
 	}
 	
 	@GetMapping("/{hash}")
-	public ApiResponse<TextDTO> findText(@PathVariable Integer hash) {
+	public ApiResponse<TextDTO> findText(@PathVariable String hash) {
 		TextDTO searchedTextDTO = textService.findText(hash);
 		return new ApiResponse<TextDTO>(HttpStatus.OK.value(), searchedTextDTO, "Text fetched successfully.");
 	}
