@@ -15,6 +15,7 @@ public class ModelMapperConfig {
 	@Bean
     Sqids sqids() {
         return Sqids.builder()
+        		.alphabet("0123456789")
                 .minLength(4)
                 .build();
     }
