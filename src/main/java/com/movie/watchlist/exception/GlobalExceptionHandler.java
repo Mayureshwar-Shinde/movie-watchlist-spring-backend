@@ -1,6 +1,7 @@
 package com.movie.watchlist.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -16,7 +17,8 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(DoesNotExistException.class)
-	public ApiResponse<Object> handleDoesNotExistException(DoesNotExistException doesNotExistException) {
-		return responseBuilder(HttpStatus.NOT_FOUND, doesNotExistException);
+	public ResponseEntity<ApiResponse<Object>> handleDoesNotExistException(DoesNotExistException doesNotExistException) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+	            .body(responseBuilder(HttpStatus.NOT_FOUND, doesNotExistException));
 	}
 }

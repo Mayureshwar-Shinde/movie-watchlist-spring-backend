@@ -3,6 +3,7 @@ package com.movie.watchlist.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,21 +25,23 @@ public class TextController {
 	}
 	
 	@GetMapping
-	public ApiResponse<List<TextDTO>> findAllText() {
+	public ResponseEntity<ApiResponse<List<TextDTO>>> findAllText() {
 		List<TextDTO> textDtoList = textService.findAllText();
-		return new ApiResponse<List<TextDTO>>(HttpStatus.OK.value(), textDtoList, "Texts fetched successfully.");
+		return ResponseEntity
+				.ok(new ApiResponse<List<TextDTO>>(HttpStatus.OK.value(), textDtoList, "Texts fetched successfully."));
 	}
 	
 	@PostMapping
-	public ApiResponse<TextDTO> saveText(@RequestBody TextDTO textDTO) {
+	public ResponseEntity<ApiResponse<TextDTO>> saveText(@RequestBody TextDTO textDTO) {
 		TextDTO savedTextDTO = textService.saveText(textDTO);
-		return new ApiResponse<TextDTO>(HttpStatus.CREATED.value(), savedTextDTO, "Text saved successfully.");    
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(new ApiResponse<TextDTO>(HttpStatus.CREATED.value(), savedTextDTO, "Text saved successfully."));
 	}
 	
 	@GetMapping("/{hash}")
-	public ApiResponse<TextDTO> findText(@PathVariable String hash) {
+	public ResponseEntity<ApiResponse<TextDTO>> findText(@PathVariable String hash) {
 		TextDTO searchedTextDTO = textService.findText(hash);
-		return new ApiResponse<TextDTO>(HttpStatus.OK.value(), searchedTextDTO, "Text fetched successfully.");
+		return ResponseEntity
+				.ok(new ApiResponse<TextDTO>(HttpStatus.OK.value(), searchedTextDTO, "Text fetched successfully."));
 	}
 }
-
