@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.sqids.Sqids;
 
 @Configuration
-public class ModelMapperConfig {
+public class BeansConfig {
 	@Bean
 	ModelMapper modelMapper() {
 		return new ModelMapper();
@@ -15,7 +15,7 @@ public class ModelMapperConfig {
 	@Bean
     Sqids sqids() {
         return Sqids.builder()
-        		.alphabet("0123456789")
+        		.alphabet("abcdefghijklmnopqrstuvwxyz")
                 .minLength(4)
                 .build();
     }

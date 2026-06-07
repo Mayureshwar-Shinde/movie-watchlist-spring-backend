@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.movie.watchlist.dto.TextDTO;
 import com.movie.watchlist.responsestructure.ApiResponse;
+import com.movie.watchlist.service.TextService;
 
 
 @RestController

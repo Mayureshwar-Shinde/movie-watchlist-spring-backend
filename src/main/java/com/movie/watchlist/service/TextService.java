@@ -1,4 +1,4 @@
-package com.movie.watchlist.controller;
+package com.movie.watchlist.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
