@@ -25,7 +25,7 @@ public class TextController {
 		this.textService = textService;
 	}
 	
-	@GetMapping
+	@GetMapping("/admin")
 	public ResponseEntity<ApiResponse<List<TextDTO>>> findAllText() {
 		List<TextDTO> textDtoList = textService.findAllText();
 		return ResponseEntity
