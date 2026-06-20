@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.sqids.Sqids;
 
@@ -27,7 +28,7 @@ public class TextService {
 	}
 	
 	public List<TextDTO> findAllText() {
-		List<Text> textList = textRepository.findAll();
+		List<Text> textList = textRepository.findAll(Sort.by(Sort.Direction.DESC, "textId"));
 		return textList.stream()
 				.map(text -> modelMapper.map(text, TextDTO.class))
 				.collect(Collectors.toList());
